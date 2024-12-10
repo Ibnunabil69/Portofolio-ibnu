@@ -27,6 +27,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::post('/', [AMessageController::class, 'store'])->name('admin.message.store');
+
+
 // Route untuk admin
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->middleware('admin')->name('admin.dashboard');
@@ -101,16 +104,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::delete('/{id}', [AContactController::class, 'destroy'])->name('admin.contact.destroy');
     });
 
-
     Route::prefix('message')->group(function () {
         Route::get('/', [AMessageController::class, 'index'])->name('admin.message'); // Menampilkan pesan
         Route::get('/data', [AMessageController::class, 'getMessage'])->name('admin.message.data'); // Ganti getMessages menjadi getMessage
         Route::get('/create', [AMessageController::class, 'create'])->name('admin.message.create'); // Form untuk membuat pesan
-        Route::post('/', [AMessageController::class, 'store'])->name('admin.message.store'); // Menyimpan pesan baru
         Route::get('/edit/{id}', [AMessageController::class, 'edit'])->name('admin.message.edit'); // Edit pesan
         Route::put('/update/{id}', [AMessageController::class, 'update'])->name('admin.message.update'); // Update pesan
         Route::delete('/{id}', [AMessageController::class, 'destroy'])->name('admin.message.destroy'); // Menghapus pesan
     });
+    
 
 });
 

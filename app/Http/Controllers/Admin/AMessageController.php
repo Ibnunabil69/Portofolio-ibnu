@@ -38,14 +38,14 @@ class AMessageController extends Controller
             'email' => 'required|email|max:255',
             'message' => 'required|string',
         ]);
-
+    
         Message::create([
             'name' => $request->name,
             'email' => $request->email,
             'message' => $request->message,
         ]);
-
-        return redirect()->back()->with('success', 'Pesan mu telah terkirim!'); // Ganti messages menjadi message
+    
+        return redirect()->back()->with('success', 'Pesan mu telah terkirim!');// Ganti messages menjadi message
     }
 
     // Menampilkan form untuk mengedit pesan
